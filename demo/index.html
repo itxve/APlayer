@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>APlayer Demo</title>
@@ -8,25 +9,30 @@
         body {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
+
         .container {
             max-width: 32rem;
             margin-left: auto;
             margin-right: auto;
             margin-bottom: 150px;
         }
+
         h1 {
             font-size: 54px;
             color: #333;
             margin: 30px 0 10px;
         }
+
         h2 {
             font-size: 22px;
             color: #555;
         }
+
         h3 {
             font-size: 24px;
             color: #555;
         }
+
         hr {
             display: block;
             width: 7rem;
@@ -35,10 +41,12 @@
             background-color: #eee;
             border: 0;
         }
+
         a {
             color: #08c;
             text-decoration: none;
         }
+
         p {
             font-size: 18px;
         }
@@ -48,11 +56,13 @@
     <script src="APlayer.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/color-thief-don@2.0.2/src/color-thief.js"></script>
 </head>
+
 <body>
     <div class="container">
         <h1>APlayer</h1>
         <h2>Wow, such a beautiful html5 music player</h2>
-        <p>Made by <a href="https://www.anotherhome.net/" target="_blank">DIYgod</a>. Available on <a href="https://github.com/DIYgod/APlayer" target="_blank">GitHub</a>. Licensed MIT.</p>
+        <p>Made by <a href="https://www.anotherhome.net/" target="_blank">DIYgod</a>. Available on <a
+                href="https://github.com/DIYgod/APlayer" target="_blank">GitHub</a>. Licensed MIT.</p>
         <hr>
         <h3>Normal</h3>
         <div id="player1"></div>
@@ -97,6 +107,8 @@
         <div id="player6" class="aplayer"></div>
         <div id="player7" class="aplayer"></div>
         <div id="player8" class="aplayer"></div>
+        <h3>Async meata</h3>
+        <div id="player11" class="aplayer"></div>
     </div>
     <script>
         if (/mobile/i.test(window.navigator.userAgent)) {
@@ -105,5 +117,7 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/jquery"></script>
     <script src="demo.js"></script>
+    <script src="demo2.js"></script>
 </body>
+
 </html>

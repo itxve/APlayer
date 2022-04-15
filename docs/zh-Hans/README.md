@@ -76,6 +76,7 @@ loop | 'all' | 音频循环播放, 可选值: 'all', 'one', 'none'
 order | 'list' | 音频循环顺序, 可选值: 'list', 'random'
 preload | 'auto' | 预加载，可选值: 'none', 'metadata', 'auto'
 volume | 0.7 | 默认音量，请注意播放器会记忆用户设置，用户手动设置音量后默认音量即失效
+switchBeforeConvertAudio| - |  在播放之前转换或填充音频信息 
 audio | - | 音频信息, 应该是一个对象或对象数组
 audio.name | - | 音频名称
 audio.artist | - | 音频艺术家
@@ -280,6 +281,45 @@ ap.on('ended', function () {
 - destroy
 - lrcshow
 - lrchide
+
+##  switchBeforeConvertAudio
+
+```
+const ap11 = new APlayer({
+  element: document.getElementById('player11'),
+  // mini: false,
+  autoplay: true,
+  lrcType: true,
+  mutex: true,
+  fixed:true,
+  preload: 'metadata',
+  siwtchBefore:loadFetchmeata,
+  audio:[{
+      id:123,
+      type: "normal",
+      theme: "rgb(22,1s8,18)",
+      name:"123232"
+  }]
+});
+
+async function  loadFetchmeata(audio,update){
+   console.log('"audio',audio);
+     if (audio.id===123) {
+         console.time("加载耗时")
+          const lrc= await loadLrc();
+          const cover=await loadCover();
+          const info=await loadUrl()
+          console.log(cover,info);
+          console.timeEnd("加载耗时")
+          audio.lrc=lrc;
+          audio.cover=cover;
+          audio.name=info.name;
+          audio.url=info.url;
+          audio.artist=info.artist;
+          update()
+     }
+}
+```
 
 ## 歌词
 

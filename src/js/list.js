@@ -144,33 +144,36 @@ class List {
 
         if (typeof index !== 'undefined' && this.audios[index]) {
             this.index = index;
-
+            this.player.template.title.innerHTML = 'loading...';
             const audio = this.audios[this.index];
+            this.player.options.switchBeforeConvertAudio(audio, () => this.updateAudioUI(audio));
+        }
+    }
 
-            // set html
-            this.player.template.pic.style.backgroundImage = audio.cover ? `url('${audio.cover}')` : '';
-            this.player.theme(this.audios[this.index].theme || this.player.options.theme, this.index, false);
-            this.player.template.title.innerHTML = audio.name;
-            this.player.template.author.innerHTML = audio.artist ? ' - ' + audio.artist : '';
+    updateAudioUI(audio) {
+        // set html
+        this.player.template.pic.style.backgroundImage = audio.cover ? `url('${audio.cover}')` : '';
+        this.player.theme(this.audios[this.index].theme || this.player.options.theme, this.index, false);
+        this.player.template.title.innerHTML = audio.name;
+        this.player.template.author.innerHTML = audio.artist ? ' - ' + audio.artist : '';
 
-            const light = this.player.container.getElementsByClassName('aplayer-list-light')[0];
-            if (light) {
-                light.classList.remove('aplayer-list-light');
-            }
-            this.player.container.querySelectorAll('.aplayer-list li')[this.index].classList.add('aplayer-list-light');
+        const light = this.player.container.getElementsByClassName('aplayer-list-light')[0];
+        if (light) {
+            light.classList.remove('aplayer-list-light');
+        }
+        this.player.container.querySelectorAll('.aplayer-list li')[this.index].classList.add('aplayer-list-light');
 
-            smoothScroll(this.index * 33, 500, null, this.player.template.list);
+        smoothScroll(this.index * 33, 500, null, this.player.template.list);
 
-            this.player.setAudio(audio);
+        this.player.setAudio(audio);
 
-            this.player.lrc && this.player.lrc.switch(this.index);
-            this.player.lrc && this.player.lrc.update(0);
+        this.player.lrc && this.player.lrc.switch(this.index);
+        this.player.lrc && this.player.lrc.update(0);
 
-            // set duration time
-            if (this.player.duration !== 1) {
-                // compatibility: Android browsers will output 1 at first
-                this.player.template.dtime.innerHTML = utils.secondToTime(this.player.duration);
-            }
+        // set duration time
+        if (this.player.duration !== 1) {
+            // compatibility: Android browsers will output 1 at first
+            this.player.template.dtime.innerHTML = utils.secondToTime(this.player.duration);
         }
     }
 

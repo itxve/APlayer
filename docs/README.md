@@ -75,6 +75,7 @@ loop | 'all' | player loop play, values: 'all', 'one', 'none'
 order | 'list' | player play order, values: 'list', 'random'
 preload | 'auto' | values: 'none', 'metadata', 'auto'
 volume | 0.7 | default volume, notice that player will remember user setting, default volume will not work after user set volume themselves
+switchBeforeConvertAudio| (audio,updateUiCallback)=>void |  before play event Convert or populate audio information
 audio | - | audio info, should be an object or object array
 audio.name | - | audio name
 audio.artist | - | audio artist
@@ -279,6 +280,45 @@ Player events
 - destroy
 - lrcshow
 - lrchide
+
+##  switchBeforeConvertAudio
+
+```
+const ap11 = new APlayer({
+  element: document.getElementById('player11'),
+  // mini: false,
+  autoplay: true,
+  lrcType: true,
+  mutex: true,
+  fixed:true,
+  preload: 'metadata',
+  siwtchBefore:loadFetchmeata,
+  audio:[{
+      id:123,
+      type: "normal",
+      theme: "rgb(22,1s8,18)",
+      name:"123232"
+  }]
+});
+
+async function  loadFetchmeata(audio,update){
+   console.log('"audio',audio);
+     if (audio.id===123) {
+         console.time("加载耗时")
+          const lrc= await loadLrc();
+          const cover=await loadCover();
+          const info=await loadUrl()
+          console.log(cover,info);
+          console.timeEnd("加载耗时")
+          audio.lrc=lrc;
+          audio.cover=cover;
+          audio.name=info.name;
+          audio.url=info.url;
+          audio.artist=info.artist;
+          update()
+     }
+}
+```
 
 ## LRC
 

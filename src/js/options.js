@@ -16,13 +16,15 @@ export default (options) => {
         listMaxHeight: options.listmaxheight || 250,
         audio: options.music || [],
         storageName: 'aplayer-setting',
+        switchBeforeConvertAudio: function (audio, updateAudioUI) {
+            updateAudioUI();
+        },
     };
     for (const defaultKey in defaultOption) {
         if (defaultOption.hasOwnProperty(defaultKey) && !options.hasOwnProperty(defaultKey)) {
             options[defaultKey] = defaultOption[defaultKey];
         }
     }
-
     options.listMaxHeight = parseFloat(options.listMaxHeight);
 
     if (Object.prototype.toString.call(options.audio) !== '[object Array]') {
